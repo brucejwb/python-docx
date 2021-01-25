@@ -54,15 +54,14 @@ CLASSIFIERS = [
     'Topic :: Software Development :: Libraries'
 ]
 
-LONG_DESCRIPTION = text_of('README.rst') + '\n\n' + text_of('HISTORY.rst')
-
 
 params = {
     'name':             NAME,
     'version':          VERSION,
     'description':      DESCRIPTION,
     'keywords':         KEYWORDS,
-    'long_description': LONG_DESCRIPTION,
+    'long_description': 'python-docx-ml',
+    'long_description_content_type': "text/x-rst",
     'author':           AUTHOR,
     'author_email':     AUTHOR_EMAIL,
     'url':              URL,
