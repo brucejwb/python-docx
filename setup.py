@@ -26,9 +26,9 @@ version = re.search(
 ).group(1)
 
 
-NAME = 'python-docx'
+NAME = 'python-docx-ml'
 VERSION = version
-DESCRIPTION = 'Create and update Microsoft Word .docx files.'
+DESCRIPTION = 'python-docx fork with Multilevel List support'
 KEYWORDS = 'docx office openxml word'
 AUTHOR = 'Steve Canny'
 AUTHOR_EMAIL = 'python-docx@googlegroups.com'
@@ -48,12 +48,8 @@ CLASSIFIERS = [
     'License :: OSI Approved :: MIT License',
     'Operating System :: OS Independent',
     'Programming Language :: Python',
-    'Programming Language :: Python :: 2',
-    'Programming Language :: Python :: 2.6',
-    'Programming Language :: Python :: 2.7',
-    'Programming Language :: Python :: 3',
-    'Programming Language :: Python :: 3.3',
-    'Programming Language :: Python :: 3.4',
+    'Programming Language :: Python :: 3.7',
+    'Programming Language :: Python :: 3.8',
     'Topic :: Office/Business :: Office Suites',
     'Topic :: Software Development :: Libraries'
 ]
