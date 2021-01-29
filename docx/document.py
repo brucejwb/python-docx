@@ -26,16 +26,18 @@ class Document(ElementProxy):
         self.__body = None
 
     def add_heading(self, text="", level=1):
-        """Return a heading paragraph newly added to the end of the document.
+        """ Return a heading paragraph newly added to the end of the document.
 
-        The heading paragraph will contain *text* and have its paragraph style
-        determined by *level*. If *level* is 0, the style is set to `Title`. If *level*
-        is 1 (or omitted), `Heading 1` is used. Otherwise the style is set to `Heading
-        {level}`. Raises |ValueError| if *level* is outside the range 0-9.
+        This method replaces the one from `Document` parent class
         """
         if not 0 <= level <= 9:
-            raise ValueError("level must be in range 0-9, got %d" % level)
-        style = "Title" if level == 0 else "Heading %d" % level
+            raise ValueError(f"level must be in range 0-9, got {level}")
+        if level == 0:
+            style = "Title"
+        elif level == 1:
+            style = "List Number"
+        else:
+            style = f"List Number {level - 1}"
         return self.add_paragraph(text, style)
 
     def add_page_break(self):
