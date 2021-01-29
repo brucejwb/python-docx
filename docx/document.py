@@ -5,8 +5,10 @@
 from __future__ import absolute_import, division, print_function, unicode_literals
 
 from docx.blkcntnr import BlockItemContainer
+from docx.enum.style import WD_STYLE_TYPE
 from docx.enum.section import WD_SECTION
 from docx.enum.text import WD_BREAK
+from docx.oxml import simpletypes
 from docx.section import Section, Sections
 from docx.shared import ElementProxy, Emu
 
@@ -24,6 +26,40 @@ class Document(ElementProxy):
         super(Document, self).__init__(element)
         self._part = part
         self.__body = None
+
+        STYP = WD_STYLE_TYPE
+
+        numXML = self.part.numbering_part.element
+        nextAbstractId = max([J.abstractNumId for J in numXML.abstractNum_lst]) + 1
+        l = numXML._new_abstractNum()
+        l.abstractNumId = nextAbstractId
+        l.add_multiLevelType().val = 'multilevel'
+
+        formats = {0: "decimal", 1: "decimal", 2: "decimal", }
+        textFmts = {0: '%1', 1: '%1.%2.', 2: '%1.%2.%3.', }
+        starts = {0: 1, 1: 1, 2: 1}
+        restarts = {0: False, 1: False, 2: 1}
+        hosts = {0: "List Number", 1: "List Number 2", 2: "List Number 3"}
+
+        numXML.abstractNum_lst[-1].addnext(l)
+        nNum = numXML.add_num(nextAbstractId)
+
+        for i in range(3):
+            lvl = l.add_lvl()
+            lvl.ilvl = i
+            lvl.add_start().val = starts[i]
+            lvl.add_numFmt().val = formats[i]
+            if (restarts[i]):
+                lvl.add_lvlRestart().val = restarts[i]
+            lvl.add_lvlText().val = textFmts[i]
+            lvl.add_suff().val = "tab"
+            pPr = lvl.add_pPr()
+            pPr.ind_left = simpletypes.Twips(i * 720)
+            ho = self.styles.get_by_id(self.styles.get_style_id(
+                hosts[i], STYP.PARAGRAPH), STYP.PARAGRAPH).element.pPr.numPr
+            ho.get_or_add_ilvl().val = i
+            ho.get_or_add_numId().val = nNum.numId
+
 
     def add_heading(self, text="", level=1):
         """ Return a heading paragraph newly added to the end of the document.
