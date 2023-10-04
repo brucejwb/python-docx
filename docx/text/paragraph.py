@@ -40,6 +40,34 @@ class Paragraph(Parented):
         return run
 
     @property
+    def numId(self):
+        if self._p.pPr is None:
+            return None
+        if self._p.pPr.numPr is None:
+            return None
+        if self._p.pPr.numPr.numId is None:
+            return None
+        return self._p.pPr.numPr.numId.val
+    
+    @numId.setter
+    def numId(self, numId):
+        self._p.get_or_add_pPr().get_or_add_numPr().get_or_add_numId().val = numId
+    
+    @property
+    def level(self):
+        if self._p.pPr is None:
+            return None
+        if self._p.pPr.numPr is None:
+            return None
+        if self._p.pPr.numPr.ilvl is None:
+            return None
+        return self._p.pPr.numPr.ilvl.val
+    
+    @level.setter
+    def level(self, lvl):
+        self._p.get_or_add_pPr().get_or_add_numPr().get_or_add_ilvl().val = lvl
+
+    @property
     def alignment(self):
         """
         A member of the :ref:`WdParagraphAlignment` enumeration specifying
@@ -111,6 +139,15 @@ class Paragraph(Parented):
             style_or_name, WD_STYLE_TYPE.PARAGRAPH
         )
         self._p.style = style_id
+    
+    @property
+    def outlineLvl(self):
+        outlineLvl = self._p.outlineLvl
+        return outlineLvl
+    
+    @outlineLvl.setter
+    def outlineLvl(self, outlineLvl):
+        self._p.outlineLvl = outlineLvl
 
     @property
     def text(self):
