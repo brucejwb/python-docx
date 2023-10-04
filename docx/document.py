@@ -11,6 +11,7 @@ from docx.enum.text import WD_BREAK
 from docx.oxml import simpletypes
 from docx.section import Section, Sections
 from docx.shared import ElementProxy, Emu
+from docx.text.list import ListParagraph
 
 
 class Document(ElementProxy):
