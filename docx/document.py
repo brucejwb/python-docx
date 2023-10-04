@@ -62,10 +62,11 @@ class Document(ElementProxy):
     def insert_paragraph_before(self, paragraph, text='', style=None):
         return paragraph.insert_paragraph_before(text, style)
     
-    def add_list(self, numbering_format="decimal"):
+    def add_list(self, num_id=None, numbering_format="decimal"):
         return ListParagraph(
             self,
             self,
+            num_id=num_id,
             numbering_format=numbering_format,
             level=0,
         )
