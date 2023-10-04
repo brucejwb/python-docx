@@ -261,6 +261,7 @@ register_element_cls('w:spacing',         CT_Spacing)
 register_element_cls('w:tab',             CT_TabStop)
 register_element_cls('w:tabs',            CT_TabStops)
 register_element_cls('w:widowControl',    CT_OnOff)
+register_element_cls('w:outlineLvl',      CT_DecimalNumber)
 
 from .text.run import CT_Br, CT_R, CT_Text  # noqa
 register_element_cls('w:br', CT_Br)
