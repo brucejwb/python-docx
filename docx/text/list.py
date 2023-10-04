@@ -59,7 +59,7 @@ class ListParagraph(object):
         return ListParagraph(
             self._parent,
             self.document,
-            num_id=None,
+            num_id=num_id,
             numbering_format=numbering_format,
             level=self.level+1,
         )
