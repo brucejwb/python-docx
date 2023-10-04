@@ -57,6 +57,7 @@ class CT_PPr(BaseOxmlElement):
     spacing = ZeroOrOne('w:spacing', successors=_tag_seq[22:])
     ind = ZeroOrOne('w:ind', successors=_tag_seq[23:])
     jc = ZeroOrOne('w:jc', successors=_tag_seq[27:])
+    outlineLvl = ZeroOrOne('w:outlineLvl', successors=_tag_seq[27:])
     sectPr = ZeroOrOne('w:sectPr', successors=_tag_seq[35:])
     del _tag_seq
 
@@ -304,7 +305,23 @@ class CT_PPr(BaseOxmlElement):
             self._remove_widowControl()
         else:
             self.get_or_add_widowControl().val = value
-
+    
+    @property
+    def outlineLvl_val(self):
+        """
+        The value of `widowControl/@val` or |None| if not present.
+        """
+        outlineLvl = self.outlineLvl
+        if outlineLvl is None:
+            return None
+        return outlineLvl.val
+        
+    @outlineLvl_val.setter
+    def outlineLvl_val(self, value):
+        if value is None:
+            self._remove_outlineLvl()
+        else:
+            self.get_or_add_outlineLvl().val = value
 
 class CT_Spacing(BaseOxmlElement):
     """
