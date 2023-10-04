@@ -76,3 +76,14 @@ class CT_P(BaseOxmlElement):
     def style(self, style):
         pPr = self.get_or_add_pPr()
         pPr.style = style
+
+    @property
+    def outlineLvl(self):
+        pPr = self.pPr
+        if pPr is None:
+            return None
+        return pPr.outlineLvl_val
+    @outlineLvl.setter
+    def outlineLvl(self, outlineLvl):
+        pPr = self.get_or_add_pPr()
+        pPr.outlineLvl_val = outlineLvl
