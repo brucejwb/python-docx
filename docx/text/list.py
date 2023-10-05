@@ -43,6 +43,7 @@ class ListParagraph(object):
         self._parent = parent
         self.document = document
         self.level = level
+        self.lists = []
         
         if not num_id:
             num = self.create_num(level, numbering_format)
@@ -56,13 +57,15 @@ class ListParagraph(object):
         style *style*. Note that the document will only be altered once the
         first item has been added to the list.
         """
-        return ListParagraph(
+        list = ListParagraph(
             self._parent,
             self.document,
             num_id=num_id,
             numbering_format=numbering_format,
             level=self.level+1,
         )
+        self.lists.append(list)
+        return list
     
     def add_paragraph(self, text=None):
         p = self.document._body.add_paragraph(text)
