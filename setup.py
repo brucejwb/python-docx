@@ -26,7 +26,7 @@ version = re.search(
 ).group(1)
 
 
-NAME = 'python-docx-ml'
+NAME = 'python-docx'
 VERSION = version
 DESCRIPTION = 'python-docx fork with Multilevel List support'
 KEYWORDS = 'docx office openxml word'
