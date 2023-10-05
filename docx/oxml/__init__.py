@@ -105,6 +105,7 @@ register_element_cls('w:numStyleLink',  CT_String)
 register_element_cls('w:lvlRestart',    CT_DecimalNumber)
 register_element_cls('w:lvlPicBulletId',CT_DecimalNumber)
 register_element_cls('w:isLgl',         CT_OnOff)
+register_element_cls('w:restartNumberingAfterBreak', CT_OnOff)
 
 from .section import (  # noqa
     CT_HdrFtr,
