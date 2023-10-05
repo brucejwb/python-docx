@@ -110,7 +110,7 @@ class CT_AbstractNum(BaseOxmlElement):
     numStyleLink = ZeroOrMore('w:numStyleLink')
     lvl = ZeroOrMore('w:lvl')
     abstractNumId = RequiredAttribute('w:abstractNumId', ST_DecimalNumber)
-    restartNumberingAfterBreak = OptionalAttribute('w:restartNumberingAfterBreak', ST_OnOff)
+    restartNumberingAfterBreak = OptionalAttribute('w15:restartNumberingAfterBreak', ST_OnOff)
 
     @classmethod
     def new(cls, abstractNumId):
