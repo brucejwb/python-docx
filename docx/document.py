@@ -27,6 +27,7 @@ class Document(ElementProxy):
         super(Document, self).__init__(element)
         self._part = part
         self.__body = None
+        self.lists = []
 
     def add_heading(self, text="", level=1):
         """ Return a heading paragraph newly added to the end of the document.
@@ -64,13 +65,15 @@ class Document(ElementProxy):
         return paragraph.insert_paragraph_before(text, style)
     
     def add_list(self, num_id=None, numbering_format="decimal"):
-        return ListParagraph(
+        list = ListParagraph(
             self,
             self,
             num_id=num_id,
             numbering_format=numbering_format,
             level=0,
         )
+        self.lists.append(list)
+        return list
 
     def add_picture(self, image_path_or_stream, width=None, height=None):
         """
