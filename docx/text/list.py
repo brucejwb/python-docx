@@ -69,12 +69,10 @@ class ListParagraph(object):
     
     def add_paragraph(self, text=None):
         p = self.document._body.add_paragraph(text)
-        p.paragraph_format.left_indent = Inches(.25*(self.level))
         return p
     
     def insert_paragraph_before(self, paragraph, text):
         p = paragraph.insert_paragraph_before(text=text)
-        p.paragraph_format.left_indent = Inches(.25*(self.level))
         return p
     
     def add_item(self, text=None):
